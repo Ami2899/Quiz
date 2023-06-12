@@ -7,6 +7,7 @@ interface QuizProps {
   res: boolean;
   setRes: React.Dispatch<React.SetStateAction<boolean>>;
   startTimer: boolean;
+  islog:boolean
   setStartTimer: React.Dispatch<React.SetStateAction<boolean>>;
   qnumber: number;
   setQNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -16,6 +17,7 @@ interface QuizProps {
   setSeconds: React.Dispatch<React.SetStateAction<number>>;
   setSelectedOptions: React.Dispatch<React.SetStateAction<(string | null)[]>>; 
   selectedOptions: (string | null)[];
+  setLog:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Quiz: React.FC<QuizProps> = ({
@@ -31,14 +33,20 @@ const Quiz: React.FC<QuizProps> = ({
   setSeconds,
   setSelectedOptions,
   selectedOptions,
+  islog,
+  setLog
 }) => {
   const [start, setStart] = useState(true);
-  const [log,setLog]=useState(false)
+  
+  const handleSignIn = () => {
+    setLog(false);
+  }
 
   return (
     <div>
-    {/* {log?<SignUp/>: <></>} */}
-      {start ? (
+    {islog?<SignUp onSignIn={handleSignIn}/>: 
+    <>
+        {start ? (
         <Start setStartTimer={setStartTimer} setStart={setStart} />
       ) : (
         <QuizQuestions
@@ -56,6 +64,8 @@ const Quiz: React.FC<QuizProps> = ({
           setStartTimer={setStartTimer}
         />
       )}
+    </>
+    }
     </div>
   );
 };

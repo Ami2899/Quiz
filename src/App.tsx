@@ -11,7 +11,8 @@ function App(): JSX.Element {
   const [qnumber, setQNumber] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(20);
-  const [selectedOptions, setSelectedOptions] = useState<(string | null)[]>(Array(questions.length).fill(null));
+  const [selectedOptions, setSelectedOptions] = useState<(string | null)[]>(Array(questions.length).fill(null))
+  const [islog,setLog]=useState<boolean>(true)
 
   return (
     <>
@@ -40,6 +41,8 @@ function App(): JSX.Element {
             seconds={seconds}
             setSelectedOptions={setSelectedOptions}
             selectedOptions={selectedOptions}
+            islog={islog}
+            setLog={setLog}
           />
           {startTimer && (
             <Timer
